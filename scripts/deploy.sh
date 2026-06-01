@@ -21,8 +21,8 @@ if [ ! -f .env ]; then
     cp .env .env.bak 2>/dev/null || true
 fi
 # Порты: web=8080, api=9380
-sed -i 's/SVR_WEB_HTTP_PORT=80/SVR_WEB_HTTP_PORT=8080/' .env 2>/dev/null || true
-sed -i 's/SVR_HTTP_PORT=9380/SVR_HTTP_PORT=9380/' .env 2>/dev/null || true
+grep -q 'SVR_WEB_HTTP_PORT=8080' .env || sed -i 's/SVR_WEB_HTTP_PORT=.*/SVR_WEB_HTTP_PORT=8080/' .env
+grep -q 'SVR_HTTP_PORT=9380' .env || sed -i 's/SVR_HTTP_PORT=.*/SVR_HTTP_PORT=9380/' .env
 
 docker compose -p ragflow --profile cpu up -d 2>/dev/null || \
 docker compose -p ragflow up -d ragflow-cpu 2>/dev/null || \
@@ -43,8 +43,8 @@ if [ ! -f .env ]; then
 fi
 
 # Порт 8081, без SSL (SSL через host nginx)
-sed -i 's/EXPOSE_NGINX_PORT=80/EXPOSE_NGINX_PORT=8081/' .env
-sed -i 's/EXPOSE_NGINX_SSL_PORT=443/EXPOSE_NGINX_SSL_PORT=8443/' .env
+sed -i 's/EXPOSE_NGINX_PORT=.*/EXPOSE_NGINX_PORT=8081/' .env
+sed -i 's/EXPOSE_NGINX_SSL_PORT=.*/EXPOSE_NGINX_SSL_PORT=8443/' .env
 sed -i "s|CONSOLE_API_URL=.*|CONSOLE_API_URL=http://dify.$DOMAIN|" .env 2>/dev/null || true
 sed -i "s|CONSOLE_WEB_URL=.*|CONSOLE_WEB_URL=http://dify.$DOMAIN|" .env 2>/dev/null || true
 sed -i "s|APP_API_URL=.*|APP_API_URL=http://dify.$DOMAIN|" .env 2>/dev/null || true
