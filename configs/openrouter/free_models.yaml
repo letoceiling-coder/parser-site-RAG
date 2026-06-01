@@ -1,0 +1,17 @@
+# Цепочка бесплатных моделей OpenRouter (fallback по порядку)
+# Документация: https://openrouter.ai/docs/guides/routing/model-fallbacks
+
+models:
+  - openrouter/free
+  - qwen/qwen3-coder:free
+  - meta-llama/llama-3.3-70b-instruct:free
+  - google/gemma-3-27b-it:free
+  - deepseek/deepseek-r1:free
+  - mistralai/mistral-small-3.1-24b-instruct:free
+  - microsoft/phi-4:free
+  - google/gemma-3-12b-it:free
+
+settings:
+  temperature: 0.7
+  max_tokens: 4096
+  route: fallback

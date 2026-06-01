@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parser Site RAG — База знаний для юристов</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+        .hero { text-align: center; padding: 80px 20px 40px; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 16px; background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2rem; color: #94a3b8; max-width: 600px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .card { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; transition: transform 0.2s, border-color 0.2s; }
+        .card:hover { transform: translateY(-4px); border-color: #60a5fa; }
+        .card h3 { color: #60a5fa; margin-bottom: 8px; font-size: 1.1rem; }
+        .card p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 16px; }
+        .card a { display: inline-block; padding: 8px 16px; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; }
+        .card a:hover { background: #1d4ed8; }
+        .status { text-align: center; padding: 40px 20px; }
+        .status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22c55e; margin-right: 8px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Parser Site RAG</h1>
+        <p>Автоматический парсинг юридических сайтов и база знаний с AI-агентом</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <h3>RAGFlow</h3>
+            <p>Хранение документов, векторный поиск, категории знаний</p>
+            <a href="https://rag.siteaacess.ru" target="_blank">Открыть RAG</a>
+        </div>
+        <div class="card">
+            <h3>Dify</h3>
+            <p>AI-агент с OpenRouter, визуальный конструктор workflow</p>
+            <a href="https://dify.siteaacess.ru" target="_blank">Открыть Dify</a>
+        </div>
+        <div class="card">
+            <h3>API Gateway</h3>
+            <p>REST API для интеграции с внешними системами</p>
+            <a href="https://api.siteaacess.ru/docs" target="_blank">Swagger Docs</a>
+        </div>
+        <div class="card">
+            <h3>Краулер</h3>
+            <p>Управление парсингом сайтов, статус задач</p>
+            <a href="https://crawl.siteaacess.ru/docs" target="_blank">Crawler API</a>
+        </div>
+        <div class="card">
+            <h3>Grafana</h3>
+            <p>Мониторинг системы, метрики парсинга</p>
+            <a href="https://grafana.siteaacess.ru" target="_blank">Мониторинг</a>
+        </div>
+    </div>
+    <div class="status">
+        <span class="status-dot"></span>
+        <span id="status-text">Проверка статуса...</span>
+    </div>
+    <script>
+        fetch('/api/health').catch(() => {}).then(r => {
+            document.getElementById('status-text').textContent =
+                r && r.ok ? 'Система работает' : 'Сервисы запускаются...';
+        });
+    </script>
+</body>
+</html>

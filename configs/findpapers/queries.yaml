@@ -1,0 +1,39 @@
+queries:
+  - query: "legal tech artificial intelligence Russia"
+    sources: [arxiv, semantic_scholar]
+    schedule: "0 10 * * 1"
+    enabled: true
+
+  - query: "court decision classification machine learning"
+    sources: [arxiv, pubmed]
+    schedule: "0 11 * * 1"
+    enabled: true
+
+  - query: "natural language processing legal documents Russian"
+    sources: [arxiv, ieee, acm]
+    schedule: "0 12 * * 1"
+    enabled: true
+
+  - query: "RAG retrieval augmented generation law"
+    sources: [arxiv, semantic_scholar]
+    schedule: "0 13 * * 1"
+    enabled: true
+
+  - query: "юридическая экспертная система"
+    sources: [cyberleninka, elibrary]
+    schedule: "0 14 * * 2"
+    enabled: true
+
+  - query: "автоматизация судебных решений"
+    sources: [cyberleninka, arxiv]
+    schedule: "0 15 * * 2"
+    enabled: true
+
+sources:
+  arxiv: true
+  pubmed: true
+  ieee: false
+  acm: false
+  semantic_scholar: true
+  scopus: false
+  biorxiv: false

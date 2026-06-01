@@ -1,0 +1,124 @@
+# Источники для парсинга — юридические сайты РФ
+# type: crawl4ai (JS) | scrapy (статика)
+
+sources:
+  # ─── Государственные правовые базы ───────────────────────────
+  - id: pravo_gov
+    name: "Официальный интернет-портал правовой информации"
+    url: https://pravo.gov.ru
+    type: scrapy
+    spider: pravo_gov
+    schedule: "0 3 * * *"
+    enabled: true
+    categories:
+      - законодательство
+      - нормативные_акты
+
+  - id: sudact
+    name: "Судебные и нормативные акты РФ"
+    url: https://sudact.ru
+    type: scrapy
+    spider: sudact
+    schedule: "0 4 * * *"
+    enabled: true
+    categories:
+      - судебная_практика
+
+  - id: consultant_plus
+    name: "КонсультантПлюс (открытые разделы)"
+    url: https://www.consultant.ru
+    type: crawl4ai
+    schedule: "0 5 * * *"
+    enabled: true
+    stealth: true
+    categories:
+      - законодательство
+      - комментарии
+
+  - id: garant
+    name: "Гарант (открытые разделы)"
+    url: https://base.garant.ru
+    type: crawl4ai
+    schedule: "0 6 * * *"
+    enabled: true
+    stealth: true
+    categories:
+      - законодательство
+
+  # ─── Судебные системы ────────────────────────────────────────
+  - id: gas_pravosudie
+    name: "ГАС Правосудие"
+    url: https://bsr.sudrf.ru
+    type: crawl4ai
+    schedule: "0 2 * * *"
+    enabled: true
+    stealth: true
+    captcha: true
+    categories:
+      - судебные_решения
+
+  - id: kad_arbitr
+    name: "Картотека арбитражных дел"
+    url: https://kad.arbitr.ru
+    type: crawl4ai
+    schedule: "0 1 * * *"
+    enabled: true
+    stealth: true
+    captcha: true
+    categories:
+      - арбитраж
+
+  - id: sudrf
+    name: "Государственная автоматизированная система «Правосудие»"
+    url: https://sudrf.ru
+    type: crawl4ai
+    schedule: "0 7 * * *"
+    enabled: true
+    stealth: true
+    categories:
+      - судебные_решения
+
+  # ─── Научные и образовательные ───────────────────────────────
+  - id: cyberleninka
+    name: "КиберЛенинка"
+    url: https://cyberleninka.ru
+    type: scrapy
+    spider: cyberleninka
+    schedule: "0 8 * * 0"
+    enabled: true
+    categories:
+      - научные_статьи
+      - юриспруденция
+
+  - id: elibrary
+    name: "eLibrary"
+    url: https://elibrary.ru
+    type: crawl4ai
+    schedule: "0 9 * * 0"
+    enabled: false
+    stealth: true
+    categories:
+      - научные_статьи
+
+  # ─── Новости и аналитика ─────────────────────────────────────
+  - id: pravo_ru
+    name: "ПРАВО.RU"
+    url: https://pravo.ru
+    type: scrapy
+    spider: pravo_ru
+    schedule: "0 */6 * * *"
+    enabled: true
+    categories:
+      - новости
+      - аналитика
+
+  - id: rg_ru_law
+    name: "Российская газета — правовой раздел"
+    url: https://rg.ru/pravo
+    type: scrapy
+    spider: rg_ru
+    schedule: "0 */12 * * *"
+    enabled: true
+    categories:
+      - новости
+      - законодательство
