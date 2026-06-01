@@ -1,5 +1,5 @@
 #!/bin/bash
-# Scrapy scheduler — запуск пауков по расписанию из configs/sources/legal_sites.yaml
+# Scrapy scheduler — запуск пауков по расписанию
 
 cd /app
 echo "Scrapy crawler started. Spiders: $(scrapy list 2>/dev/null || echo 'loading...')"
