@@ -26,35 +26,7 @@ for f in configs/dify/models/free-*.yaml; do
   echo "  + $fname"
 done
 
-# Отключить ВСЕ predefined модели плагина
-echo "Disabling paid models..."
-docker exec dify-plugin_daemon-1 sh -c "ls ${LLM_DIR}/*.yaml" | while read -r ypath; do
-  model=$(docker exec dify-plugin_daemon-1 grep '^model:' "$ypath" | head -1 | sed 's/model: //' | tr -d '"' | tr -d "'")
-  fname=$(basename "$ypath")
-  if [[ "$fname" == free-* ]]; then
-    enabled="true"
-  else
-    enabled="false"
-  fi
-  docker exec dify-db_postgres-1 psql -U postgres -d dify -q -c \
-    "DELETE FROM provider_model_settings WHERE tenant_id='${TENANT_ID}' AND provider_name='${PROVIDER}' AND model_name='${model}';"
-  docker exec dify-db_postgres-1 psql -U postgres -d dify -q -c \
-    "INSERT INTO provider_model_settings (tenant_id, provider_name, model_name, model_type, enabled, load_balancing_enabled) VALUES ('${TENANT_ID}', '${PROVIDER}', '${model}', 'llm', ${enabled}, false);"
-done
-
-# Системная модель по умолчанию
-docker exec dify-db_postgres-1 psql -U postgres -d dify -c \
-  "UPDATE tenant_default_models SET provider_name='${PROVIDER}', model_name='${PRIMARY}', updated_at=NOW() WHERE tenant_id='${TENANT_ID}' AND model_type='llm';"
-
-docker exec dify-db_postgres-1 psql -U postgres -d dify -c \
-  "DELETE FROM tenant_default_models WHERE tenant_id='${TENANT_ID}' AND model_type='text-embedding';"
-
 # Перезапуск
 docker restart dify-plugin_daemon-1 dify-api-1 dify-worker-1 dify-web-1
-sleep 8
-
-echo ""
-echo "=== Done ==="
-echo "Default LLM: ${PRIMARY}"
-echo "In Dify UI search: FREE"
-echo "Available: FREE Llama 3.3 70B, FREE Qwen3 Coder, FREE Gemma 4 31B, ..."
+sleep 5
+python3 scripts/disable-dify-paid-models.py
