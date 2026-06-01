@@ -1,0 +1,6 @@
+- "meta-llama/llama-3.3-70b-instruct:free"
+- "qwen/qwen3-coder:free"
+- "google/gemma-4-31b-it:free"
+- "openai/gpt-oss-20b:free"
+- "z-ai/glm-4.5-air:free"
+- "meta-llama/llama-3.2-3b-instruct:free"
