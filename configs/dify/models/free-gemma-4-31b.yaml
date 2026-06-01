@@ -1,0 +1,24 @@
+model: "google/gemma-4-31b-it:free"
+label:
+  en_US: "FREE Gemma 4 31B"
+  ru_RU: "FREE Gemma 4 31B"
+model_type: llm
+features:
+  - multi-tool-call
+  - agent-thought
+  - stream-tool-call
+  - vision
+model_properties:
+  mode: chat
+  context_size: 131072
+parameter_rules:
+  - name: temperature
+    use_template: temperature
+  - name: max_tokens
+    use_template: max_tokens
+    default: 4096
+pricing:
+  input: "0.0"
+  output: "0.0"
+  unit: "0.000001"
+  currency: USD
