@@ -23,7 +23,7 @@ fi
 # Порты: web=8090, api=9380 (8080 занят на сервере)
 grep -q 'SVR_WEB_HTTP_PORT=8090' .env || sed -i 's/SVR_WEB_HTTP_PORT=.*/SVR_WEB_HTTP_PORT=8090/' .env
 grep -q 'SVR_HTTP_PORT=9380' .env || sed -i 's/SVR_HTTP_PORT=.*/SVR_HTTP_PORT=9380/' .env
-grep -q 'SVR_WEB_HTTPS_PORT=8443' .env || sed -i 's/SVR_WEB_HTTPS_PORT=.*/SVR_WEB_HTTPS_PORT=8443/' .env
+grep -q 'SVR_WEB_HTTPS_PORT=9443' .env || sed -i 's/SVR_WEB_HTTPS_PORT=.*/SVR_WEB_HTTPS_PORT=9443/' .env
 grep -q 'EXPOSE_REDIS_PORT=6380' .env || sed -i 's/EXPOSE_REDIS_PORT=.*/EXPOSE_REDIS_PORT=6380/' .env
 
 docker compose -p ragflow --profile cpu up -d 2>/dev/null || \
