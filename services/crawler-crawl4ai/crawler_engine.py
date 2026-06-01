@@ -164,13 +164,6 @@ async def crawl_url(
     for attempt in range(max_retries):
         try:
             async with AsyncWebCrawler(config=browser_config) as crawler:
-                if stealth:
-                    try:
-                        from playwright_stealth import stealth_async
-                        await stealth_async(crawler.crawler_strategy.browser_manager.default_context)
-                    except Exception:
-                        pass
-
                 result = await crawler.arun(url=url, config=run_config)
 
                 if not result.success:

@@ -9,9 +9,7 @@ pyyaml==6.0.2
 pydantic==2.10.4
 pydantic-settings==2.7.0
 playwright==1.49.1
-playwright-stealth==1.0.6
 fake-useragent==1.5.1
-2captcha-python==1.2.1
 python-multipart==0.0.20
 prometheus-client==0.21.1
 asyncpg==0.30.0
