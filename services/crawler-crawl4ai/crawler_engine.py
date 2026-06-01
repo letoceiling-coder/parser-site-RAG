@@ -51,9 +51,16 @@ def load_sources() -> list[dict]:
 
 
 def get_proxies() -> list[str]:
-    if not settings.proxy_enabled or not settings.proxy_list:
+    if not settings.proxy_enabled:
         return []
-    return [p.strip() for p in settings.proxy_list.split(",") if p.strip()]
+    if settings.proxy_list:
+        return [p.strip() for p in settings.proxy_list.split(",") if p.strip()]
+    proxy_file = "/app/data/proxies.json"
+    if os.path.exists(proxy_file):
+        import json
+        with open(proxy_file, encoding="utf-8") as f:
+            return json.load(f).get("proxies", [])
+    return []
 
 
 async def solve_captcha_2captcha(site_key: str, page_url: str, captcha_type: str = "recaptcha") -> str | None:
