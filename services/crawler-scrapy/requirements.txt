@@ -1,12 +1,6 @@
 scrapy==2.12.0
-scrapy-playwright==0.0.41
-playwright==1.49.1
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
 boto3==1.35.86
 pyyaml==6.0.2
 redis==5.2.1
-celery[redis]==5.4.0
-httpx==0.28.1
 fake-useragent==1.5.1
 itemadapter==0.10.0
