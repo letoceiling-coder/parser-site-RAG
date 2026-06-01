@@ -1,0 +1,26 @@
+model: meta-llama/llama-3.3-70b-instruct:free
+label:
+  en_US: Llama 3.3 70B Free
+  ru_RU: Llama 3.3 70B Free
+model_type: llm
+features:
+  - multi-tool-call
+  - agent-thought
+  - stream-tool-call
+model_properties:
+  mode: chat
+  context_size: 131072
+parameter_rules:
+  - name: temperature
+    use_template: temperature
+  - name: top_p
+    use_template: top_p
+  - name: max_tokens
+    use_template: max_tokens
+    default: 4096
+    max: 8192
+pricing:
+  input: "0.0"
+  output: "0.0"
+  unit: "0.000001"
+  currency: USD
