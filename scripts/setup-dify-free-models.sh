@@ -7,7 +7,7 @@ TENANT_ID="a528d4cf-523b-4c2c-809a-2f10bcbbb529"
 PROVIDER="langgenius/openrouter/openrouter"
 PRIMARY="meta-llama/llama-3.3-70b-instruct:free"
 
-PLUGIN_DIR=$(docker exec dify-plugin_daemon-1 find /app/storage/cwd -maxdepth 1 -name 'openrouter-*' -type d | head -1)
+PLUGIN_DIR=$(docker exec dify-plugin_daemon-1 find /app/storage/cwd/langgenius -maxdepth 1 -name 'openrouter-*' -type d | head -1)
 LLM_DIR="${PLUGIN_DIR}/models/llm"
 
 echo "Plugin: $PLUGIN_DIR"
